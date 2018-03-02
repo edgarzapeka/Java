@@ -15,6 +15,19 @@ public class Contact {
     private String province;
     private String postalCode;
 
+    public Contact(){}
+
+    public Contact(String firstName, String lastName, String phoneNumber, String email, String streetAddress, String city, String province, String postalCode){
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPhoneNumber(phoneNumber);
+        setEmail(email);
+        setStreetAddress(streetAddress);
+        setCity(city);
+        setProvince(province);
+        setPostalCode(postalCode);
+    }
+
     public Long getId() {
         return id;
     }

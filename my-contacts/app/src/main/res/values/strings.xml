@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MyContacts</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="first_name_label">First Name: </string>
+    <string name="last_name_label">Last Name: </string>
+    <string name="email_label">Email: </string>
+    <string name="phone_number_label">Phone Number: </string>
+    <string name="street_address_label">Street Address: </string>
+    <string name="city_label">City: </string>
+    <string name="province_label">Province: </string>
+    <string name="postal_code_label">Postal Code: </string>
 </resources>
