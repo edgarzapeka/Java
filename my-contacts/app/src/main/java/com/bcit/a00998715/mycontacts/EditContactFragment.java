@@ -1,9 +1,13 @@
 package com.bcit.a00998715.mycontacts;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,12 +34,30 @@ public class EditContactFragment extends Fragment {
     private Button mSave;
     private Button mCancel;
 
+    private Contact contact;
     private DBAdapter db;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         this.db = new DBAdapter(getContext());
+        db.open();
+        Cursor c = db.getContact(getArguments().getLong(ContactViewFragment.CONTACT_KEY));
+        if (c.moveToFirst()){
+            contact = new Contact(
+                    c.getString(1),
+                    c.getString(2),
+                    c.getString(3),
+                    c.getString(4),
+                    c.getString(5),
+                    c.getString(6),
+                    c.getString(7),
+                    c.getString(8)
+            );
+            contact.setId(c.getLong(0));
+        }
+        db.close();
     }
 
     @Nullable
@@ -55,6 +77,15 @@ public class EditContactFragment extends Fragment {
         mSave = v.findViewById(R.id.save_button);
         mCancel = v.findViewById(R.id.cancel_button);
 
+        mFirstName.setText(contact.getFirstName());
+        mLastName.setText(contact.getLastName());
+        mEmail.setText(contact.getEmail());
+        mPhoneNumber.setText(contact.getPhoneNumber());
+        mPostalCode.setText(contact.getPostalCode());
+        mStreetAddress.setText(contact.getStreetAddress());
+        mCity.setText(contact.getCity());
+        mProvince.setText(contact.getProvince());
+
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,8 +98,9 @@ public class EditContactFragment extends Fragment {
                         mCity.getText().toString(),
                         mProvince.getText().toString(),
                         mPostalCode.getText().toString());
+                c.setId(contact.getId());
                 db.open();
-                db.insertContact(c);
+                db.updateContact(c);
                 db.close();
 
                 getActivity().getSupportFragmentManager().popBackStack();
@@ -83,5 +115,19 @@ public class EditContactFragment extends Fragment {
         });
 
         return v;
+    }
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_back, menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.back_fragment:
+                getActivity().getSupportFragmentManager().popBackStack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

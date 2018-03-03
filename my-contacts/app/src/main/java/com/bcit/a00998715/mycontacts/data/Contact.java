@@ -41,7 +41,7 @@ public class Contact {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName = firstName == null ? "" : firstName;
     }
 
     public String getLastName() {
@@ -49,7 +49,7 @@ public class Contact {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName = lastName == null ? "" : lastName;
     }
 
     public String getPhoneNumber() {
@@ -57,7 +57,7 @@ public class Contact {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber == null ? "" : phoneNumber;
     }
 
     public String getEmail() {
@@ -65,7 +65,7 @@ public class Contact {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email == null ? "" : email;
     }
 
     public String getStreetAddress() {
@@ -73,7 +73,7 @@ public class Contact {
     }
 
     public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
+        this.streetAddress = streetAddress == null ? "" : streetAddress;
     }
 
     public String getCity() {
@@ -81,7 +81,7 @@ public class Contact {
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.city = city == null ? "" : city;
     }
 
     public String getProvince() {
@@ -89,7 +89,7 @@ public class Contact {
     }
 
     public void setProvince(String province) {
-        this.province = province;
+        this.province = province == null ? "" : province;
     }
 
     public String getPostalCode() {
@@ -97,6 +97,6 @@ public class Contact {
     }
 
     public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+        this.postalCode = postalCode == null ? "" : postalCode;
     }
 }

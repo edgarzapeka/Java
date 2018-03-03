@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -73,6 +74,18 @@ public class ContactListFragment extends Fragment {
 
         adapter = new ContactListAdapter(contacts, getContext());
         list.setAdapter(adapter);
+        list.setClickable(true);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Contact c = (Contact)adapterView.getItemAtPosition(i);
+                ContactViewFragment f = new ContactViewFragment();
+                Bundle bundle = new Bundle();
+                bundle.putLong(ContactViewFragment.CONTACT_KEY, c.getId());
+                f.setArguments(bundle);
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, f).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+            }
+        });
 
         return v;
     }
@@ -117,8 +130,7 @@ class ContactListAdapter extends BaseAdapter{
 
     @Override
     public long getItemId(int i) {
-        //return getItem(i).getId();
-        return 0;
+        return getItem(i).getId();
     }
 
     @Override
@@ -129,23 +141,9 @@ class ContactListAdapter extends BaseAdapter{
             view = inflater.inflate(R.layout.contact_list_item, viewGroup, false);
         }
 
-        TextView firstName = view.findViewById(R.id.first_name);
-        TextView lastName = view.findViewById(R.id.last_name);
-        TextView city = view.findViewById(R.id.city_val);
-        TextView streetAddress = view.findViewById(R.id.street_address_val);
-        TextView province = view.findViewById(R.id.province_val);
-        TextView postalCode = view.findViewById(R.id.postal_code_val);
-        TextView email = view.findViewById(R.id.email_val);
-        TextView phoneNumber = view.findViewById(R.id.phone_number_val);
-
-        firstName.setText(getItem(i).getFirstName());
-        lastName.setText(getItem(i).getLastName());
-        city.setText(getItem(i).getCity());
-        streetAddress.setText(getItem(i).getStreetAddress());
-        province.setText(getItem(i).getProvince());
-        postalCode.setText(getItem(i).getPostalCode());
-        email.setText(getItem(i).getEmail());
-        phoneNumber.setText(getItem(i).getPhoneNumber());
+        ((TextView)view.findViewById(R.id.first_name)).setText(getItem(i).getFirstName());
+        ((TextView)view.findViewById(R.id.last_name)).setText(getItem(i).getLastName());
+        ((TextView)view.findViewById(R.id.phone_number)).setText(getItem(i).getPhoneNumber());
 
         return view;
     }

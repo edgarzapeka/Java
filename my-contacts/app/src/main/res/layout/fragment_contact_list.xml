@@ -5,9 +5,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="asdasdas"/>
+        android:text="@string/contact_list_title"
+        android:gravity="center"
+        android:padding="15dp"
+        android:textSize="24sp"/>
 
     <ListView
         android:id="@+id/contact_list"
