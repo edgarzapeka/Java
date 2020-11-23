@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">MyContacts</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="first_name_label">First Name: </string>
+    <string name="last_name_label">Last Name: </string>
+    <string name="email_label">Email: </string>
+    <string name="phone_number_label">Phone Number: </string>
+    <string name="street_address_label">Street Address: </string>
+    <string name="city_label">City: </string>
+    <string name="province_label">Province: </string>
+    <string name="postal_code_label">Postal Code: </string>
+    <string name="add_contact_title">Add New Contact</string>
+    <string name="contact_list_title">Contacts: </string>
+    <string name="contact_view_title">Contact Info:</string>
+    <string name="name_contact_view_label">Name:</string>
+    <string name="address_contact_view_label">Address:</string>
+    <string name="extra_info_contact_view_label">Extra Info:</string>
+    <string name="edit_contact_title">Edit Contact:</string>
+    <string name="no_contacts_title">No Contacts Yet. Go Ahead and add some</string>
+</resources>
